@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -8,6 +8,7 @@ function Login() {
     //States to store Data
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     //onChange Eventss
     const onEmailChange = (e) => {
@@ -31,6 +32,7 @@ function Login() {
                     const userExists = userArray.find((user) => user.email === email && user.password === password);
                     if (userExists) {
                         toast.success('Login Successful');
+                        navigate('/Dashboard')
                     } else {
                         toast.error('Invalid Credentails');
                     }
